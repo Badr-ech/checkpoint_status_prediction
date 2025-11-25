@@ -1,0 +1,68 @@
+# Web Framework
+fastapi
+uvicorn[standard]
+python-multipart
+jinja2
+
+# Database
+sqlalchemy
+alembic
+psycopg2-binary
+
+# Social Media APIs
+telethon
+pyrogram
+praw
+tgcrypto
+
+# Data Collection & Processing
+requests
+beautifulsoup4
+pandas
+numpy
+python-dateutil
+
+# Geographic Data
+geopandas
+geopy
+overpy
+hdx-python-api
+shapely
+
+# Machine Learning
+scikit-learn
+xgboost
+lightgbm
+prophet
+joblib
+
+# NLP & Arabic Processing
+transformers
+torch
+sentencepiece
+nltk
+camel-tools
+
+# API & HTTP
+httpx
+aiohttp
+
+# Environment & Config
+python-dotenv
+pydantic
+pydantic-settings
+
+# Utilities
+pytz
+schedule
+loguru
+rich
+
+# Testing
+pytest
+pytest-asyncio
+
+# Development
+black
+flake8
+mypy

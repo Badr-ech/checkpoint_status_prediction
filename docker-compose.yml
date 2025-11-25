@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    environment:
+      - DATABASE_URL=sqlite:///./data/checkpoint_data.db
+    restart: unless-stopped
+    depends_on:
+      - db
+    
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=checkpoint_db
+      - POSTGRES_USER=checkpoint_user
+      - POSTGRES_PASSWORD=checkpoint_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  telegram_collector:
+    build: .
+    command: python -m src.collectors.telegram_collector
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    environment:
+      - DATABASE_URL=sqlite:///./data/checkpoint_data.db
+    restart: unless-stopped
+    depends_on:
+      - app
+
+  reddit_collector:
+    build: .
+    command: python -m src.collectors.reddit_collector
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    environment:
+      - DATABASE_URL=sqlite:///./data/checkpoint_data.db
+    restart: unless-stopped
+    depends_on:
+      - app
+
+volumes:
+  postgres_data:

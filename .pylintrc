@@ -1,0 +1,14 @@
+[MASTER]
+disable=C0103,C0114,C0115,C0116,R0913,R0914,R0915,E1101,W0212,W0611,R0902,R0904,R0912,C0302,W0703
+
+[MESSAGES CONTROL]
+# Disable specific Pylance warnings
+disable=import-error,no-member,not-callable,unsupported-assignment-operation,unsubscriptable-object
+
+[FORMAT]
+max-line-length=120
+
+[DESIGN]
+max-args=10
+max-locals=25
+max-branches=15
